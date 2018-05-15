@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+     - name: "Configuring SLAPD pre-install"
+       script: ./preinstall.sh {{ name }} {{ pass }}
+
+     - name: "Installing LDAP - slapd & ldap-utils"
+       apt: name={{ item }} state=installed
+       with_items:
+       - slapd
+       - ldap-utils
